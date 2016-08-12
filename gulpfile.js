@@ -38,3 +38,35 @@ gulp.task('sass', function () {
 gulp.task('sass:watch', function () {
   gulp.watch('./styles/*.scss', ['sass']);
 });
+
+//npm install gulp-rename
+//npm install --save-dev gulp-image-resize
+var rename = require("gulp-rename");
+var imageResize = require("gulp-image-resize");
+var resolutionArray=[1920, 1366, 800, 480];
+
+gulp.task("imgsToResponsive", function () {
+    
+  resolutionArray.forEach(function(item,i){
+      
+    gulp.src("./src/images/*.{jpg,png}")
+    .pipe(imageResize({
+      width : item
+    }))
+    .pipe(rename(function (path) {
+      path.basename+="-"+item
+    }))
+    .pipe(gulp.dest("./build/images"));
+      
+       gulp.src("./src/images/*.{jpg,png}")
+    .pipe(imageResize({
+      width : item*2
+    }))
+    .pipe(rename(function (path) {
+      path.basename+="-"+item+"-x2"
+    }))
+    .pipe(gulp.dest("./build/images"));
+  
+  });    
+  
+});
