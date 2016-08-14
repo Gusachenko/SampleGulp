@@ -28,22 +28,37 @@ gulp.task('minify-html', function () {
 
 //generate CSS from SASS
 //npm install gulp-sass --save-dev
-var sass = require('gulp-sass');
+//npm install autoprefixer
+//npm install --save-dev gulp-postcss
+var sass         = require('gulp-sass');
+var postcss      = require('gulp-postcss');
+var autoprefixer = require('autoprefixer');
+
 gulp.task('sass', function () {
-  return gulp.src('./src/styles/*.scss')
+    var processors = [
+        autoprefixer({ 
+            browsers: ["> 0%"]
+        })
+    ];
+
+    return gulp.src('./src/styles/*.scss')
     .pipe(sass().on('error', sass.logError))
+    .pipe(postcss(processors))
     .pipe(gulp.dest('./build/styles'));
 });
  
 gulp.task('sass:watch', function () {
-  gulp.watch('./styles/*.scss', ['sass']);
+  gulp.watch('./src/styles/*.scss', ['sass']);
 });
+
+
+
 
 //npm install gulp-rename
 //npm install --save-dev gulp-image-resize
-var rename = require("gulp-rename");
-var imageResize = require("gulp-image-resize");
-var resolutionArray=[1920, 1366, 800, 480];
+var rename          = require("gulp-rename");
+var imageResize     = require("gulp-image-resize");
+var resolutionArray = [1920, 1366, 800, 480];
 
 gulp.task("imgsToResponsive", function () {
     
@@ -66,7 +81,7 @@ gulp.task("imgsToResponsive", function () {
       path.basename+="-"+item+"-x2"
     }))
     .pipe(gulp.dest("./build/images"));
-  
+      
   });    
   
 });
