@@ -8,7 +8,7 @@ var gulp = require('gulp');
 //npm install gulp-jshint --save-dev
 var jshint = require('gulp-jshint');
 gulp.task('jshint', function() {
-  gulp.src('./src/scripts/*.js')
+  gulp.src('./app/scripts/*.js')
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
 });
@@ -18,8 +18,8 @@ gulp.task('jshint', function() {
 //npm install gulp-minify-html --save-dev
 var minifyHtml = require("gulp-minify-html");
 gulp.task('minify-html', function () {
-	var srcPath = "./src/*.html",
-	destPath = "./build";
+	var srcPath = "./app/*.html",
+	destPath = "./dist";
     gulp.src(srcPath) // path to your files
     .pipe(minifyHtml())
     .pipe(gulp.dest(destPath));
@@ -41,14 +41,14 @@ gulp.task('sass', function () {
         })
     ];
 
-    return gulp.src('./src/styles/*.scss')
+    return gulp.src('./app/styles/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss(processors))
-    .pipe(gulp.dest('./build/styles'));
+    .pipe(gulp.dest('./dist/styles'));
 });
  
 gulp.task('sass:watch', function () {
-  gulp.watch('./src/styles/*.scss', ['sass']);
+  gulp.watch('./app/styles/*.scss', ['sass']);
 });
 
 
@@ -64,23 +64,23 @@ gulp.task("imgsToResponsive", function () {
     
   resolutionArray.forEach(function(item,i){
       
-    gulp.src("./src/images/*.{jpg,png}")
+    gulp.src("./app/images/*.{jpg,png}")
     .pipe(imageResize({
       width : item
     }))
     .pipe(rename(function (path) {
       path.basename+="-"+item
     }))
-    .pipe(gulp.dest("./build/images"));
+    .pipe(gulp.dest("./dist/images"));
       
-       gulp.src("./src/images/*.{jpg,png}")
+       gulp.src("./app/images/*.{jpg,png}")
     .pipe(imageResize({
       width : item*2
     }))
     .pipe(rename(function (path) {
       path.basename+="-"+item+"-x2"
     }))
-    .pipe(gulp.dest("./build/images"));
+    .pipe(gulp.dest("./dist/images"));
       
   });    
   

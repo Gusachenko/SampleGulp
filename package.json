@@ -17,7 +17,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "sass"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp-echo": "gulp -v",
+    "styles": "gulp sass"
   },
   "repository": {
     "type": "git",
@@ -27,7 +29,7 @@
     "gulp"
   ],
   "author": "Gusachenko",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Gusachenko/SampleGulp/issues"
   },
