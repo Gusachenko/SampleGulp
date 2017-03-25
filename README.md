@@ -1,4 +1,4 @@
-# SampleGulp: sample gulp + npm project structure
+# npm-gulp-automate: sample gulp + npm project structure
 Automate and enhance workflow.
 
 Setup environment:
