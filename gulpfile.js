@@ -56,15 +56,17 @@ gulp.task('sass:watch', function () {
 
 //npm install gulp-rename
 //npm install --save-dev gulp-image-resize
+const imagemin      = require('gulp-imagemin');
 var rename          = require("gulp-rename");
 var imageResize     = require("gulp-image-resize");
-var resolutionArray = [1920, 1366, 800, 480];
+var resolutionArray = [192, 256];
 
 gulp.task("imgsToResponsive", function () {
     
   resolutionArray.forEach(function(item,i){
       
     gulp.src("./app/images/*.{jpg,png}")
+    .pipe(imagemin())
     .pipe(imageResize({
       width : item
     }))
@@ -73,15 +75,22 @@ gulp.task("imgsToResponsive", function () {
     }))
     .pipe(gulp.dest("./dist/images"));
       
-       gulp.src("./app/images/*.{jpg,png}")
-    .pipe(imageResize({
-      width : item*2
-    }))
-    .pipe(rename(function (path) {
-      path.basename+="-"+item+"-x2"
-    }))
-    .pipe(gulp.dest("./dist/images"));
-      
+    gulp.src("./app/images/*.{jpg,png}")
+      .pipe(imagemin())
+      .pipe(imageResize({
+          width : item*2
+        }))
+      .pipe(rename(function (path) {
+          path.basename+="-"+item+"-x2"
+      }))
+      .pipe(gulp.dest("./dist/images"));
   });    
   
+});
+
+const clean = require('gulp-clean');
+//
+gulp.task('clean-dist', function () {
+    return gulp.src(['./dist/*', '!./dist/vendor'], {read: false})
+        .pipe(clean());
 });
