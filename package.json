@@ -1,7 +1,7 @@
 {
   "name": "samplegulp",
   "version": "1.0.0",
-  "description": "sample", 
+  "description": "sample",
   "main": "gulpfile.js",
   "dependencies": {
     "autoprefixer": "^6.4.0",
