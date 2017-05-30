@@ -22,7 +22,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "gulp-echo": "gulp -v",
-    "styles": "gulp sass"
+    "styles": "gulp sass",
+    "images-min": "gulp imgsToMin"
   },
   "repository": {
     "type": "git",

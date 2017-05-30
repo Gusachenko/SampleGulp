@@ -88,6 +88,12 @@ gulp.task("imgsToResponsive", function () {
   
 });
 
+gulp.task("imgsToMin", function () {
+    gulp.src("./app/images/*.{jpg,png}")
+    .pipe(imagemin())
+    .pipe(gulp.dest("./dist/images"));
+});
+
 const clean = require('gulp-clean');
 //
 gulp.task('clean-dist', function () {
