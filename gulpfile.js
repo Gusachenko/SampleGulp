@@ -57,6 +57,7 @@ gulp.task('sass:watch', function () {
 //npm install gulp-rename
 //npm install --save-dev gulp-image-resize
 const imagemin      = require('gulp-imagemin');
+var webp = require('gulp-webp');
 var rename          = require("gulp-rename");
 var imageResize     = require("gulp-image-resize");
 var resolutionArray = [192, 256];
@@ -91,6 +92,13 @@ gulp.task("imgsToResponsive", function () {
 gulp.task("imgsToMin", function () {
     gulp.src("./app/images/*.{jpg,png}")
     .pipe(imagemin())
+    .pipe(gulp.dest("./dist/images"));
+});
+
+gulp.task("imgsToMinWebP", function () {
+    gulp.src("./app/images/*.{jpg,png}")
+    .pipe(imagemin())
+    .pipe(webp())
     .pipe(gulp.dest("./dist/images"));
 });
 
