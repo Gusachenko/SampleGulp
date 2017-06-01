@@ -25,7 +25,7 @@
     "gulp-echo": "gulp -v",
     "styles": "gulp sass",
     "images-min": "gulp imgsToMin",
-    "images-min:webp": "gulp imgsToMinWebP" 
+    "images-min:webp": "gulp imgsToMinWebP"
   },
   "repository": {
     "type": "git",
