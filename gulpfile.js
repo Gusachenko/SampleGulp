@@ -60,7 +60,7 @@ const imagemin      = require('gulp-imagemin');
 var webp = require('gulp-webp');
 var rename          = require("gulp-rename");
 var imageResize     = require("gulp-image-resize");
-var resolutionArray = [192, 256];
+var resolutionArray = [36, 48, 72, 96, 144, 192];
 
 gulp.task("imgsToResponsive", function () {
     
@@ -72,7 +72,7 @@ gulp.task("imgsToResponsive", function () {
       width : item
     }))
     .pipe(rename(function (path) {
-      path.basename+="-"+item
+      path.basename+="-"+item+"x"+item
     }))
     .pipe(gulp.dest("./dist/images"));
       
